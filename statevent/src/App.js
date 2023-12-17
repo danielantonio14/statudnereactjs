@@ -1,5 +1,6 @@
 
 import './App.css';
+import {useState} from "react";
 
 
 const messages = [
@@ -11,9 +12,20 @@ const messages = [
 
 function App() {
 
-  const step = 1;
+
   const activeColor = 'green'; // Cor para botões ativos
   const inactiveColor = 'gray'; // Cor para botões inativos
+
+    const [step,setStep] = useState(0);
+
+    function HandlePrevious(){
+
+       if ( step > 1) setStep(step-1);
+    }
+
+    function HandleNext(){
+        if ( step < 3) setStep(step+1);
+    }
 
   return (
     <div className="steps">
@@ -25,8 +37,10 @@ function App() {
 
       <p className="message"> Step{step}: {messages[step-1]}</p>
       <div className="buttons">
-         <button className="">Prev</button>
-        <button className="">Next</button>
+         <button className=""
+         onClick={HandlePrevious}>Prev</button>
+        <button className=""
+        onClick={HandleNext}>Next</button>
 
       </div>
 
